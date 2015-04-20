@@ -27,6 +27,7 @@ make
 ```
 
 Or more explicit:
+
 ```
 make deploy=deployments/all-in-one
 ```
@@ -36,6 +37,12 @@ Rebuild everything:
 ```
 make rebuild
 ```
+
+Destroy your environment:
+
+```
+make destroy
+``
 
 
 Manual trigger
@@ -61,4 +68,11 @@ When vagrant VM is ready, go back to the project root and run ansible:
 
 ```
 ansible-playbook -i deployments/local-all-in-one/hosts site.yml
+```
+
+Destroy your environment:
+
+```
+cd deployments/all-in-one
+vagrant destroy -f
 ```
