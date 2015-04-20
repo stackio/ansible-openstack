@@ -29,7 +29,7 @@ make
 Or more explicit:
 ```
 make deploy=deployments/all-in-one
-
+```
 
 Rebuild everything:
 
