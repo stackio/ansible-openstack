@@ -42,7 +42,7 @@ Destroy your environment:
 
 ```
 make destroy
-``
+```
 
 
 Manual trigger
