@@ -14,6 +14,11 @@ up:
 	vagrant up; \
 	popd
 
+ssh:
+	pushd $(deploy); \
+	vagrant ssh; \
+	popd
+
 fix-key:
 	chmod 400 deployments/vagrant_private_key
 
