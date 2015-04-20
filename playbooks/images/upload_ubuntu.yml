@@ -1,0 +1,25 @@
+---
+- hosts: glance-api[0]
+  sudo: True
+  vars:
+    ubuntu_url: https://cloud-images.ubuntu.com/utopic/current/utopic-server-cloudimg-arm64-disk1.img
+    filename: ubuntu-14.10
+  roles:
+    - openstack/keystone/_global
+  post_tasks:
+    - name: download ubuntu
+      get_url:
+        url={{ ubuntu_url }}
+        dest=/tmp/{{ filename }}
+
+    - name: upload to glance
+      glance:
+        name={{ filename }}
+        file=/tmp/{{ filename }}
+        disk_format=qcow2
+        container_format=bare
+        is_public=True
+        auth_url={{ keystone_admin_url }}
+        username={{ keystone_admin_username }}
+        password={{ keystone_admin_password }}
+        tenant_name={{ keystone_admin_tenant_name }}

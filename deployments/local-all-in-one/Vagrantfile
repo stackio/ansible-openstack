@@ -1,0 +1,136 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'fileutils'
+
+Vagrant.require_version ">= 1.6.0"
+
+GLOBAL_CONFIG = File.join(File.dirname(__FILE__), "../config.rb")
+DEPLOY_CONFIG = File.join(File.dirname(__FILE__), "config.rb")
+
+HOSTNAME = "openstack-all-in-one"
+
+$inline_fix_vbguest = <<SCRIPT
+base=$(find /opt -maxdepth 1 -name "VBoxGuest*" -type d | sort -nr | head -n1)
+sudo ln -s $base/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+SCRIPT
+
+# Defaults for config options defined in CONFIG
+$vm_box = "alexandrem/centos-6.6"
+$vm_box_url = false
+$vm_gui = false
+$vm_memory = 2048
+$vm_cpus = 1
+$vm_inline_shell = <<SCRIPT
+  sudo yum update -y
+  sed -i '/proxy/d' /etc/environment
+  mv /etc/profile.d/proxy.sh /etc/profile.d/proxy 2> /dev/null
+SCRIPT
+$vm_cinder_disk = '.vagrant/cinder-volume-extradisk.vdi'
+$vm_cinder_disk_size = 8092
+
+if File.exist?(GLOBAL_CONFIG)
+  require GLOBAL_CONFIG
+end
+
+if File.exist?(DEPLOY_CONFIG)
+  require DEPLOY_CONFIG
+end
+
+Vagrant.configure(2) do |config|
+  config.vm.box = $vm_box
+
+  if $vm_box_url
+    config.vm.box_url = $vm_box_url
+  end
+
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+  end
+
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    puts "Setting vagrant proxy config from ENV..."
+    if ENV["http_proxy"]
+      puts "http_proxy: " + ENV["http_proxy"]
+      config.proxy.http     = ENV["http_proxy"]
+    end
+    if ENV["https_proxy"]
+      puts "https_proxy: " + ENV["https_proxy"]
+      config.proxy.https    = ENV["https_proxy"]
+    end
+    if ENV["no_proxy"]
+      config.proxy.no_proxy = ENV["no_proxy"]
+    end
+  end
+
+  # required for ansible with static private key
+  config.ssh.insert_key = false
+
+  config.vm.define "all-in-one" do |machine|
+    ####################################################
+    # START - network interfaces
+    ####################################################
+
+    # management
+    machine.vm.network :private_network, ip: "172.16.0.2",
+                       :netmask => "255.255.255.0"
+    # frontend api
+    machine.vm.network :private_network, ip: "172.16.100.2",
+                       :netmask => "255.255.255.0"
+
+    # backend network
+    machine.vm.network :private_network, ip: "172.16.200.2",
+                       :netmask => "255.255.255.0"
+
+    # frontend guest network (floating ips)
+    machine.vm.network :private_network, ip: "172.20.100.2",
+                       :netmask => "255.255.255.0"
+
+    # compute
+    machine.vm.network :private_network, ip: "172.17.100.2",
+                       :netmask => "255.255.255.0"
+
+    # storage
+    machine.vm.network :private_network, ip: "172.25.100.2",
+                       :netmask => "255.255.255.0"
+    machine.vm.network :private_network, ip: "172.25.200.2",
+                       :netmask => "255.255.255.0"
+
+    ####################################################
+    # END - network interfaces
+    ####################################################
+
+    machine.vm.hostname = $HOSTNAME
+
+    # horizon dashboard
+    machine.vm.network "forwarded_port", guest: 80, host: 8888
+
+    machine.vm.synced_folder ".", "/vagrant", disabled: true
+
+    machine.vm.provider :virtualbox do |vb|
+      vb.gui = $vm_gui
+      vb.memory = $vm_memory
+      vb.cpus = $vm_cpus
+
+      vb.customize ["createhd", "--filename", $vm_cinder_disk, "--size", $vm_cinder_disk_size]
+      vb.customize ["storageattach", :id, "--storagectl", "SATA Controller",
+                     "--port", 2, "--device", 0, "--type", "hdd",
+                     "--medium", $vm_cinder_disk]
+    end
+
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      puts "Ensure that latest vagrant-vbguest modules are used inside guest..."
+      machine.vm.provision "shell", inline: $inline_fix_vbguest
+    end
+
+    if $vm_inline_shell
+      machine.vm.provision "shell", inline: $vm_inline_shell
+    end
+  end
+
+  #config.vm.provision "ansible" do |ansible|
+  #  ansible.inventory_path = "hosts"
+  #  ansible.playbook = "../../playbooks/local-openstack.yml"
+  #  ansible.limit = 'all'
+  #end
+end

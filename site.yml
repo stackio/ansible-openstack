@@ -1,0 +1,100 @@
+---
+- hosts: all
+  sudo: True
+  roles:
+    - ubi-common
+  tags:
+    - ubi-common
+
+- hosts: mysql
+  sudo: True
+  roles:
+    - openstack/mysql/mysql-server
+  tags:
+    - mysql
+
+- hosts: rabbitmq
+  sudo: True
+  roles:
+    - openstack/rabbitmq
+  tags:
+    - rabbitmq
+
+- hosts: keystone
+  sudo: True
+  roles:
+    - openstack/keystone/keystone-all
+  tags:
+    - keystone
+
+- hosts: nova-api
+  sudo: True
+  roles:
+    - openstack/nova/nova-api
+  tags:
+    - nova
+    - nova-api
+
+- hosts: nova-scheduler
+  sudo: True
+  roles:
+    - openstack/nova/nova-scheduler
+  tags:
+    - nova
+    - nova-scheduler
+
+- hosts: cinder-api
+  sudo: True
+  roles:
+    - openstack/cinder/cinder-api
+  tags:
+    - cinder
+    - cinder-api
+
+- hosts: cinder-scheduler
+  sudo: True
+  roles:
+    - openstack/cinder/cinder-scheduler
+  tags:
+    - cinder
+    - cinder-scheduler
+
+- hosts: cinder-volume
+  sudo: True
+  roles:
+    - openstack/cinder/cinder-volume
+  tags:
+    - cinder
+    - cinder-volume
+
+- hosts: glance-api
+  sudo: True
+  roles:
+    - openstack/glance/glance-api
+  tags:
+    - glance
+    - glance-api
+
+- hosts: glance-registry
+  sudo: True
+  roles:
+    - openstack/glance/glance-registry
+  tags:
+    - glance
+    - glance-registry
+
+- hosts: dashboard
+  sudo: True
+  roles:
+    - openstack/horizon
+  tags:
+    - horizon
+
+- hosts: compute
+  sudo: True
+  roles:
+    - openstack/nova/nova-compute
+    - openstack/nova/nova-network
+  tags:
+    - nova
+    - nova-compute

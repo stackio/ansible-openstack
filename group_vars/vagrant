@@ -1,0 +1,22 @@
+---
+os_nova_virt_nested: True
+os_cfg_nova_libvirt_virt_type: qemu
+
+openstack_network_management: 172.16.0.0/24
+openstack_network_external: 172.16.100.0/24
+openstack_network_internal: 172.16.200.0/24
+
+nova_network_compute_internal: 172.17.100.0/24
+os_nova_network_fixed_range_v4: 172.17.100.0/24
+os_nova_network_fixed_range_allocate: 172.17.100.64/26
+
+#neutron_external_network: 172.17.0.0/16
+#neutron_external_network_gateway_ip: 172.17.0.3
+#neutron_external_network_allocation_pool_start: 172.17.10.100
+#neutron_external_network_allocation_pool_end: 172.17.250.250
+
+cinder_volume_dev: /dev/sdb
+
+# to not conflict with all-in-one installation, we remove
+# metadata service from nova-api
+os_cfg_nova_enabled_apis: ec2,osapi_compute

@@ -1,0 +1,37 @@
+---
+- hosts: all
+  sudo: True
+  tasks:
+    - name: remove all openstack service packages
+      yum: name=openstack-{{ item }}* state=absent
+      with_items:
+        - nova
+        - keystone
+        - neutron
+        - cinder
+        - glance
+        - heat
+        - ceilometer
+
+    - name: remove all openstack client packages
+      yum: name=python-{{ item }}* state=absent
+      with_items:
+        - nova
+        - keystone
+        - neutron
+        - cinder
+        - glance
+        - heat
+        - ceilometer
+
+    - name: remove service folders
+      file:
+        path=/etc/{{ item }}
+        state=absent
+      with_items:
+        - keystone
+        - nova
+        - neutron
+        - cinder
+        - glance
+        - heat
