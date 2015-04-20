@@ -19,6 +19,11 @@ ssh:
 	vagrant ssh; \
 	popd
 
+suspend:
+	pushd $(deploy); \
+	vagrant suspend; \
+	popd
+
 fix-key:
 	chmod 400 deployments/vagrant_private_key
 
