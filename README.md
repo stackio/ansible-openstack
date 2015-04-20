@@ -1,5 +1,5 @@
 Setup
---------
+======
 
 Checkout all submodules:
 ```
@@ -11,13 +11,49 @@ Install the `netaddr` python module (required for ansible filters plugin):
 pip install -r requirements.txt
 ```
 
-All-in-one installation
------------------------
+All-in-one local installation
+=============================
 
 Make sure to have vagrant installed (v1.7+) with latest virtualbox.
 
+
+Using make
+----------
+
+Default all-in-one:
+
 ```
-cd deployments/local-all-in-one
+make
+```
+
+Or more explicit:
+```
+make deploy=deployments/all-in-one
+
+
+Rebuild everything:
+
+```
+make rebuild
+```
+
+
+Manual trigger
+--------------
+
+If you cannot run Make on your platform, then do the following.
+
+First, make sure the private key has the correct permissions:
+
+```
+chmod 400 deployments/vagrant_private_key
+```
+
+Then launch vagrant for the target deployment:
+
+
+```
+cd deployments/all-in-one
 vagrant up
 ```
 
