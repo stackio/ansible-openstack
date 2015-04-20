@@ -24,5 +24,5 @@ vagrant up
 When vagrant VM is ready, go back to the project root and run ansible:
 
 ```
-ansible-playbook -i deployements/local-all-in-one/hosts site.yml
+ansible-playbook -i deployments/local-all-in-one/hosts site.yml
 ```
