@@ -76,3 +76,10 @@ Destroy your environment:
 cd deployments/all-in-one
 vagrant destroy -f
 ```
+
+Access Horizon Dashboard
+========================
+
+Open this url:
+
+[http://localhost:8888/dashboard/](http://localhost:8888/dashboard/) 
