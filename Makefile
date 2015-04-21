@@ -47,4 +47,4 @@ test-syntax:
 
 tests: test-syntax
 
-.PHONY: all rebuild
+.PHONY: all rebuild tests
