@@ -82,4 +82,16 @@ Access Horizon Dashboard
 
 Open this url:
 
-[http://localhost:8888/dashboard/](http://localhost:8888/dashboard/) 
+[http://localhost:8888/dashboard/](http://localhost:8888/dashboard/)
+
+Development
+============
+
+Launch tests
+-------------
+
+Run ansible tests suite locally with:
+
+```
+make tests
+```
