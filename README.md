@@ -84,6 +84,10 @@ Open this url:
 
 [http://localhost:8888/dashboard/](http://localhost:8888/dashboard/)
 
+Credentials location for the default admin user:
+
+deployments/all-in-one/credentials/keystone-admin-password
+
 Development
 ============
 
