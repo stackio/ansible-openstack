@@ -6,23 +6,35 @@
 SHELL = /bin/bash
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
 deploy = deployments/all-in-one
+password_file = credentials/keystone-admin-password
+password := $(shell cat ${deploy}/${password_file})
 
-all: up fix-key provision
+
+all: up fix-key provision show-gen-password
 
 up:
-	pushd $(deploy); \
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
 	vagrant up; \
-	popd
+	popd 1> /dev/null
 
 ssh:
-	pushd $(deploy); \
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
 	vagrant ssh; \
-	popd
+	popd 1> /dev/null
 
 suspend:
-	pushd $(deploy); \
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
 	vagrant suspend; \
-	popd
+	popd 1> /dev/null
+
+status:
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
+	vagrant status; \
+	popd 1> /dev/null
 
 fix-key:
 	chmod 400 deployments/vagrant_private_key
@@ -31,11 +43,15 @@ provision:
 	ansible-playbook -i $(deploy)/hosts site.yml
 
 destroy:
-	pushd $(deploy); \
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
 	vagrant destroy -f; \
-	popd
+	popd 1> /dev/null
 
 rebuild: destroy all
+
+show-gen-password:
+	@echo -e "Generated admin password is: \t" $(password)
 
 test-syntax:
 	- echo localhost > inventory; \
