@@ -11,6 +11,7 @@ Install the `netaddr` python module (required for ansible filters plugin):
 pip install -r requirements.txt
 ```
 
+
 All-in-one local installation
 =============================
 
@@ -77,6 +78,7 @@ cd deployments/all-in-one
 vagrant destroy -f
 ```
 
+
 Access Horizon Dashboard
 ========================
 
@@ -84,9 +86,10 @@ Open this url:
 
 [http://localhost:8888/dashboard/](http://localhost:8888/dashboard/)
 
-Credentials location for the default admin user:
+Credentials for the default admin user are located at:
 
-deployments/all-in-one/credentials/keystone-admin-password
+`deployments/all-in-one/credentials/keystone-admin-password`
+
 
 Development
 ============
