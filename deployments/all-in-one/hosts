@@ -125,7 +125,7 @@ ironic
 swift
 
 [compute]
-controller_host
+compute_host
 
 [vagrant:children]
 openstack-services
