@@ -9,6 +9,10 @@ deploy = deployments/all-in-one
 password_file = credentials/keystone-admin-password
 password := $(shell cat ${deploy}/${password_file})
 
+ifdef tags
+	provision_args += --tags $(tags)
+endif
+
 
 all: up fix-key provision show-gen-password
 
@@ -40,7 +44,7 @@ fix-key:
 	chmod 400 deployments/vagrant_private_key
 
 provision:
-	ansible-playbook -i $(deploy)/hosts site.yml
+	ansible-playbook -i $(deploy)/hosts site.yml $(provision_args)
 
 destroy:
 	@echo -e "Using deployment at: \t" $(deploy); \
