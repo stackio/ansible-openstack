@@ -5,7 +5,7 @@
     cirros_url: http://cdn.download.cirros-cloud.net/0.3.1/cirros-0.3.1-x86_64-disk.img
     filename: cirros-0.3.1
   roles:
-    - openstack/keystone/_global
+    - openstack/keystone/common
   post_tasks:
     - name: download cirros
       get_url:
