@@ -8,13 +8,14 @@ TOP := $(dir $(lastword $(MAKEFILE_LIST)))
 deploy = deployments/all-in-one
 password_file = credentials/keystone-admin-password
 password := $(shell cat ${deploy}/${password_file})
+dashboard_url = http://localhost:8888/dashboard
 
 ifdef tags
 	provision_args += --tags $(tags)
 endif
 
 
-all: up fix-key provision show-gen-password
+all: up fix-key provision show-gen-password show-dashboard-url
 
 up:
 	@echo -e "Using deployment at: \t" $(deploy); \
@@ -56,6 +57,9 @@ rebuild: destroy all
 
 show-gen-password:
 	@echo -e "Generated admin password is: \t" $(password)
+
+show-dashboard-url:
+	@echo -e "Openstack dashboard runs at: \t" $(dashboard_url)
 
 test-syntax:
 	echo localhost > inventory;
