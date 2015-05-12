@@ -19,7 +19,7 @@
         disk_format=qcow2
         container_format=bare
         is_public=True
-        auth_url={{ keystone_admin_url }}
-        username={{ keystone_admin_username }}
-        password={{ keystone_admin_password }}
-        tenant_name={{ keystone_admin_tenant_name }}
+        auth_url={{ os_keystone_admin_url }}
+        username={{ os_keystone_admin_username }}
+        password={{ os_keystone_admin_password }}
+        tenant_name={{ os_keystone_admin_tenant_name }}
