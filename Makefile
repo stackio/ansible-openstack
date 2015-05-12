@@ -58,12 +58,12 @@ show-gen-password:
 	@echo -e "Generated admin password is: \t" $(password)
 
 test-syntax:
-	- echo localhost > inventory; \
-	  find . -name '*.yml' -type f -not -path "./roles/*" -maxdepth 1 \
-	    | xargs -n1  ansible-playbook --syntax-check --list-tasks -i inventory && \
-	  find ./playbooks -name '*.yml' -type f \
-	    | xargs -n1  ansible-playbook --syntax-check --list-tasks -i inventory; \ 
-	  rm -fr inventory
+	echo localhost > inventory;
+	find . -name '*.yml' -type f -not -path "./roles/*" -maxdepth 1 \
+	  | xargs -n1  ansible-playbook --syntax-check --list-tasks -i inventory && \
+	find ./playbooks -name '*.yml' -type f \
+	  | xargs -n1  ansible-playbook --syntax-check --list-tasks -i inventory; \
+	rm -fr inventory
 
 tests: test-syntax
 
