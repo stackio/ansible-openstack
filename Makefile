@@ -21,7 +21,7 @@ all: up fix-key provision show-gen-password show-dashboard-url
 
 requirements: virtualenv
 	@echo "installing role dependencies..."
-	$(venv)/bin/python ansible-galaxy install -d -r roles.yml
+	$(venv)/bin/python ansible-galaxy install -d -i -r roles.yml
 	@echo "done."
 
 virtualenv: venv/bin/activate
