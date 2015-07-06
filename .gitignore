@@ -3,3 +3,4 @@ deployments/config.rb
 deployments/**/config.rb
 deployments/**/credentials
 *.pyc
+venv/
