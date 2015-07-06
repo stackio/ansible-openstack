@@ -1,0 +1,3 @@
+- src: https://github.com/alexandrem/mysql
+  version: master
+  path: roles/
