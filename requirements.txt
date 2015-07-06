@@ -1,1 +1,4 @@
 netaddr
+pyyaml
+jinja2
+ansible
