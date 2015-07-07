@@ -48,7 +48,7 @@ install-requirements-dev: virtualenv
 
 install-requirements: virtualenv
 	@echo "installing role dependencies..."
-	# until we fix our meta dependencies, we must keep the -d develoment flag
+	# until we fix our meta dependencies, we must keep the -d development flag
 	$(venv)/bin/python ansible-galaxy install -i -d -r roles.yml
 	@echo "done."
 
