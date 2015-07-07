@@ -1,6 +1,11 @@
 # local repository:
 #   src: git+/opt/path_to_project...
 
+- src: git@gitlab-ncsa.ubisoft.org:ansible-hub/ubi-common.git
+  version: master
+  scm: git
+  path: roles/
+
 - src: https://github.com/alexandrem/mysql
   version: master
   path: roles/
