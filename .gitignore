@@ -4,3 +4,4 @@ deployments/**/config.rb
 deployments/**/credentials
 *.pyc
 venv/
+roles
