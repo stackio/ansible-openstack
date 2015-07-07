@@ -23,14 +23,14 @@
 - hosts: keystone
   sudo: True
   roles:
-    - openstack/keystone/keystone-all
+    - openstack/keystone
   tags:
     - keystone
 
 - hosts: nova-api
   sudo: True
   roles:
-    - openstack/nova/nova-api
+    - openstack/nova-api
   tags:
     - nova
     - nova-api
@@ -38,7 +38,7 @@
 - hosts: nova-scheduler
   sudo: True
   roles:
-    - openstack/nova/nova-scheduler
+    - openstack/nova-scheduler
   tags:
     - nova
     - nova-scheduler
@@ -93,8 +93,8 @@
 - hosts: compute
   sudo: True
   roles:
-    - openstack/nova/nova-compute
-    - openstack/nova/nova-network
+    - openstack/nova-compute
+    - openstack/nova-network
   tags:
     - nova
     - nova-compute

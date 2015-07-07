@@ -1,3 +1,78 @@
+# local repository:
+#   src: git+/opt/path_to_project...
+
 - src: https://github.com/alexandrem/mysql
   version: master
   path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/base.git
+  name: openstack-base
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova.git
+  name: nova
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-common.git
+  name: nova-common
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-config.git
+  name: nova-config
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-api.git
+  name: nova-api
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-scheduler.git
+  name: nova-scheduler
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-compute.git
+  name: nova-compute
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-network.git
+  name: nova-network
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone.git
+  name: keystone
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-common.git
+  name: keystone-common
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-config.git
+  name: keystone-config
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/rabbitmq.git
+  name: rabbitmq
+  version: master
+  scm: git
+  path: roles/openstack/
