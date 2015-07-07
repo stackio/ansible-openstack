@@ -5,24 +5,55 @@
 
 SHELL = /bin/bash
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
+ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 deploy = deployments/all-in-one
 password_file = credentials/keystone-admin-password
 password := $(shell cat ${deploy}/${password_file})
 dashboard_url = http://localhost:8888/dashboard
 venv = venv
 bin = $(venv)/bin
+development = 1
+roles_path = roles/openstack
+roles_dev_path = $(ROOT_DIR)/../ansible-openstack-roles
 
 ifdef tags
 	provision_args += --tags $(tags)
 endif
 
+ifeq ($(development),1)
+requirements: install-requirements-dev development
+else
+requirements: install-requirements
+endif
 
-all: up fix-key provision show-gen-password show-dashboard-url
+all: requirements up fix-key provision show-gen-password show-dashboard-url
 
-requirements: virtualenv
-	@echo "installing role dependencies..."
-	$(venv)/bin/python ansible-galaxy install -d -i -r roles.yml
+development:
+	mkdir -p ../ansible-openstack-roles
+	@echo "development mode enabled."
+	@for d in `find $(roles_path) -type d -depth 1`; do \
+	  name=`basename $$d`; \
+		test -d $(roles_dev_path)/$$name || (mv $$d $(roles_dev_path)/$$name; \
+		  echo "moved $$name to $(roles_dev_path)/"); \
+		test -d $$d && rm -fr $$d && \
+		  echo "removed $$name (because develop repo exists outside)"; \
+		test -L $$d || (ln -s $(roles_dev_path)/$$name $$d && \
+		  echo "develop link created in $(roles_path)/$$name"); \
+	done
+
+install-requirements-dev: virtualenv
+	@echo "installing role dependencies for dev..."
+	$(venv)/bin/python ansible-galaxy install -i -d -r roles.yml
 	@echo "done."
+
+install-requirements: virtualenv
+	@echo "installing role dependencies..."
+	# until we fix our meta dependencies, we must keep the -d develoment flag
+	$(venv)/bin/python ansible-galaxy install -i -d -r roles.yml
+	@echo "done."
+
+clean-requirements:
+	rm -fr roles/openstack
 
 virtualenv: venv/bin/activate
 	@echo "Installing project venv for ansible..."
@@ -60,7 +91,7 @@ status:
 fix-key:
 	chmod 400 deployments/vagrant_private_key
 
-provision: requirements
+provision:
 	$(bin)/ansible-playbook -i $(deploy)/hosts site.yml $(provision_args)
 
 destroy:
@@ -77,7 +108,7 @@ show-gen-password:
 show-dashboard-url:
 	@echo -e "Openstack dashboard runs at: \t" $(dashboard_url)
 
-test-syntax: requirements
+test-syntax:
 	echo localhost > inventory;
 	find . -name '*.yml' -type f -not -path "./roles/*" -maxdepth 1 \
 	  | xargs -n1  $(bin)ansible-playbook --syntax-check --list-tasks -i inventory && \
@@ -85,6 +116,6 @@ test-syntax: requirements
 	  | xargs -n1  $(bin)ansible-playbook --syntax-check --list-tasks -i inventory; \
 	rm -fr inventory
 
-tests: test-syntax
+tests: requirements test-syntax
 
-.PHONY: all rebuild requirements tests
+.PHONY: all rebuild install-requirements tests
