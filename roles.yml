@@ -11,7 +11,7 @@
   path: roles/
 
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/base.git
-  name: openstack-base
+  name: base
   version: icehouse
   scm: git
   path: roles/openstack/
