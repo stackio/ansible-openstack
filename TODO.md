@@ -1,0 +1,37 @@
+- change all variables with os_* prefix
+ - glance
+ - cinder
+- add missing core components
+ - ceilometer
+ - heat
+- test on multi VMs (1. database, 2. api)
+ - may need to refactor things for keystone and mysql init if it fails
+   because related packages are absent
+- fix glance initialization to not have glance-registry depend on a previous run of glance-api
+- fix keystone SSL certs setup to support multi keystone servers
+ - copy generated files to each server
+- refactor neutron and separate plugins from core (experimental)
+- refactor rabbitmq setup out of openstack/common/base
+- tags filters
+ - initialize
+ - bootstrap
+- add rabbitmq wrapper role
+- add rabbitmq setup logic for each openstack service
+ - look at the openstack-ansible project
+- fix neutron OVS install
+-- separate into roles
+- add ceilometer
+- add heat
+- use latest default config file content for each service
+ - glance
+ - cinder
+ - ceilometer
+ - heat
+ - neutron
+- add full config attributes in service defaults
+ - glance
+ - cinder
+ - ceilometer
+ - heat
+- add swift
+- add sahara
