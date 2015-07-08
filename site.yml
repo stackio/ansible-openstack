@@ -74,7 +74,9 @@
 - hosts: glance-api
   sudo: True
   roles:
-    - openstack/glance-api
+    - role: openstack/glance
+      do: install
+      service: glance-api
   tags:
     - glance
     - glance-api
@@ -82,7 +84,9 @@
 - hosts: glance-registry
   sudo: True
   roles:
-    - openstack/glance-registry
+    - role: openstack/glance
+      do: install
+      service: glance-registry
   tags:
     - glance
     - glance-registry
