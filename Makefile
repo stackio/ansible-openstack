@@ -100,7 +100,7 @@ destroy:
 	vagrant destroy -f; \
 	popd 1> /dev/null
 
-rebuild: destroy all
+rebuild: destroy clean-requirements all
 
 show-gen-password:
 	@echo -e "Generated admin password is: \t" $(password)
