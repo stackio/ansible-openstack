@@ -34,20 +34,8 @@
   scm: git
   path: roles/openstack/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-api.git
-  name: nova-api
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-scheduler.git
   name: nova-scheduler
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-compute.git
-  name: nova-compute
   version: icehouse
   scm: git
   path: roles/openstack/
