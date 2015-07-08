@@ -30,7 +30,9 @@
 - hosts: nova-api
   sudo: True
   roles:
-    - openstack/nova-api
+    - role: openstack/nova
+      do: install
+      service: nova-api
   tags:
     - nova
     - nova-api
@@ -93,7 +95,9 @@
 - hosts: compute
   sudo: True
   roles:
-    - openstack/nova-compute
+    - role: openstack/nova
+      do: install
+      service: nova-compute
     - openstack/nova-network
   tags:
     - nova
