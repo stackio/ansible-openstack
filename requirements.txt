@@ -1,4 +1,4 @@
 netaddr
 pyyaml
 jinja2
-ansible
+ansible==1.9.2
