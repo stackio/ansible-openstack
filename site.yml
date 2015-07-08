@@ -9,7 +9,7 @@
 - hosts: mysql
   sudo: True
   roles:
-    - openstack/mysql/mysql-server
+    - openstack/mysql
   tags:
     - mysql
 
@@ -46,7 +46,7 @@
 - hosts: cinder-api
   sudo: True
   roles:
-    - openstack/cinder/cinder-api
+    - openstack/cinder-api
   tags:
     - cinder
     - cinder-api
@@ -54,7 +54,7 @@
 - hosts: cinder-scheduler
   sudo: True
   roles:
-    - openstack/cinder/cinder-scheduler
+    - openstack/cinder-scheduler
   tags:
     - cinder
     - cinder-scheduler
@@ -62,7 +62,7 @@
 - hosts: cinder-volume
   sudo: True
   roles:
-    - openstack/cinder/cinder-volume
+    - openstack/cinder-volume
   tags:
     - cinder
     - cinder-volume
@@ -70,7 +70,7 @@
 - hosts: glance-api
   sudo: True
   roles:
-    - openstack/glance/glance-api
+    - openstack/glance-api
   tags:
     - glance
     - glance-api
@@ -78,7 +78,7 @@
 - hosts: glance-registry
   sudo: True
   roles:
-    - openstack/glance/glance-registry
+    - openstack/glance-registry
   tags:
     - glance
     - glance-registry
