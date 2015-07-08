@@ -34,14 +34,20 @@
   scm: git
   path: roles/openstack/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-common.git
-  name: keystone-common
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-config.git
+  name: keystone-config
   version: icehouse
   scm: git
   path: roles/openstack/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-config.git
-  name: keystone-config
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance.git
+  name: glance
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance-config.git
+  name: glance-config
   version: icehouse
   scm: git
   path: roles/openstack/
