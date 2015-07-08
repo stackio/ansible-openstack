@@ -40,7 +40,9 @@
 - hosts: nova-scheduler
   sudo: True
   roles:
-    - openstack/nova-scheduler
+    - role: openstack/nova
+      do: install
+      service: nova-network
   tags:
     - nova
     - nova-scheduler
@@ -98,7 +100,9 @@
     - role: openstack/nova
       do: install
       service: nova-compute
-    - openstack/nova-network
+    - role: openstack/nova
+      do: install
+      service: nova-network
   tags:
     - nova
     - nova-compute
