@@ -33,12 +33,12 @@ development:
 	@echo "development mode enabled."
 	@for d in `find $(roles_path) -type d -depth 1`; do \
 	  name=`basename $$d`; \
-		test -d $(roles_dev_path)/$$name || (mv $$d $(roles_dev_path)/$$name; \
-		  echo "moved $$name to $(roles_dev_path)/"); \
-		test -d $$d && rm -fr $$d && \
-		  echo "removed $$name (because develop repo exists outside)"; \
-		test -L $$d || (ln -s $(roles_dev_path)/$$name $$d && \
-		  echo "develop link created in $(roles_path)/$$name"); \
+	  test -d $(roles_dev_path)/$$name || (mv $$d $(roles_dev_path)/$$name; \
+	    echo "moved $$name to $(roles_dev_path)/"); \
+	  test -d $$d && rm -fr $$d && \
+	    echo "removed $$name (because develop repo exists outside)"; \
+	  test -L $$d || (ln -s $(roles_dev_path)/$$name $$d && \
+	    echo "develop link created in $(roles_path)/$$name"); \
 	done
 
 install-requirements-dev: virtualenv
