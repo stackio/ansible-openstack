@@ -118,4 +118,6 @@ test-syntax:
 
 tests: test-syntax
 
-.PHONY: all rebuild install-requirements tests
+.PHONY: all development install-requirements install-requirements-dev clean-requirements \
+	    up ssh suspend status fix-key provision destroy rebuild show-gen-password \
+		show-dashboard-url test-syntax tests
