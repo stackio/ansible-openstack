@@ -23,7 +23,8 @@
 - hosts: keystone
   sudo: True
   roles:
-    - openstack/keystone
+    - role: openstack/keystone
+      do: install
   tags:
     - keystone
 
