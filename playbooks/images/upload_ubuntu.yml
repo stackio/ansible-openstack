@@ -5,7 +5,7 @@
     ubuntu_url: https://cloud-images.ubuntu.com/utopic/current/utopic-server-cloudimg-arm64-disk1.img
     filename: ubuntu-14.10
   roles:
-    - openstack/keystone/common
+    - openstack/keystone
   post_tasks:
     - name: download ubuntu
       get_url:
