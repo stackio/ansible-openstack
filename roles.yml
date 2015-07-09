@@ -58,6 +58,18 @@
   scm: git
   path: roles/openstack/
 
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql.git
+  name: mysql
+  version: master
+  scm: git
+  path: roles/openstack/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql-common.git
+  name: mysql-common
+  version: master
+  scm: git
+  path: roles/openstack/
+
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/rabbitmq.git
   name: rabbitmq
   version: master
