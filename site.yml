@@ -50,7 +50,9 @@
 - hosts: cinder-api
   sudo: True
   roles:
-    - openstack/cinder-api
+    - role: openstack/cinder
+      do: install
+      service: cinder-api
   tags:
     - cinder
     - cinder-api
@@ -58,7 +60,9 @@
 - hosts: cinder-scheduler
   sudo: True
   roles:
-    - openstack/cinder-scheduler
+    - role: openstack/cinder
+      do: install
+      service: cinder-scheduler
   tags:
     - cinder
     - cinder-scheduler
@@ -66,7 +70,9 @@
 - hosts: cinder-volume
   sudo: True
   roles:
-    - openstack/cinder-volume
+    - role: openstack/cinder
+      do: install
+      service: cinder-volume
   tags:
     - cinder
     - cinder-volume
