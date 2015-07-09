@@ -40,6 +40,12 @@
   scm: git
   path: roles/openstack/
 
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/cinder.git
+  name: cinder
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance.git
   name: glance
   version: icehouse
