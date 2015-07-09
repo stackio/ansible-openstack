@@ -109,11 +109,11 @@ show-dashboard-url:
 	@echo -e "Openstack dashboard runs at: \t" $(dashboard_url)
 
 test-syntax:
-	echo localhost > inventory;
-	find . -name '*.yml' -type f -not -path "./roles/*" -maxdepth 1 \
-	  | xargs -n1  $(bin)ansible-playbook --syntax-check --list-tasks -i inventory && \
+	@echo localhost > inventory;
+	@find . -name '*.yml' -type f -not -path "./roles/*" -not -path "./roles.yml" -maxdepth 1 \
+	  | xargs -n1  $(bin)/ansible-playbook --syntax-check --list-tasks -i inventory && \
 	find ./playbooks -name '*.yml' -type f \
-	  | xargs -n1  $(bin)ansible-playbook --syntax-check --list-tasks -i inventory; \
+	  | xargs -n1  $(bin)/ansible-playbook --syntax-check --list-tasks -i inventory; \
 	rm -fr inventory
 
 tests: requirements test-syntax
