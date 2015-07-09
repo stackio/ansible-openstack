@@ -116,6 +116,6 @@ test-syntax:
 	  | xargs -n1  $(bin)/ansible-playbook --syntax-check --list-tasks -i inventory; \
 	rm -fr inventory
 
-tests: requirements test-syntax
+tests: test-syntax
 
 .PHONY: all rebuild install-requirements tests
