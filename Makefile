@@ -5,7 +5,7 @@
 
 SHELL = /bin/bash
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
-ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 deploy = deployments/all-in-one
 password_file = credentials/keystone-admin-password
 password := $(shell cat ${deploy}/${password_file})
