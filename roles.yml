@@ -10,6 +10,12 @@
   version: master
   path: roles/
 
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/commons.git
+  name: commons
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/base.git
   name: base
   version: icehouse
@@ -46,6 +52,12 @@
   scm: git
   path: roles/openstack/
 
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/cinder-config.git
+  name: cinder-config
+  version: icehouse
+  scm: git
+  path: roles/openstack/
+
 - src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance.git
   name: glance
   version: icehouse
@@ -58,14 +70,14 @@
   scm: git
   path: roles/openstack/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql.git
-  name: mysql
-  version: master
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/horizon.git
+  name: horizon
+  version: icehouse
   scm: git
   path: roles/openstack/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql-common.git
-  name: mysql-common
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql.git
+  name: mysql
   version: master
   scm: git
   path: roles/openstack/
