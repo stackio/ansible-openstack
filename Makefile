@@ -53,7 +53,7 @@ install-requirements: virtualenv
 	@echo "done."
 
 clean-requirements:
-	rm -fr roles/openstack
+	rm -fr roles
 
 virtualenv: venv/bin/activate
 	@echo "Installing project venv for ansible..."
