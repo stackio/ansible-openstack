@@ -1,7 +1,3 @@
 [submodule "plugins/filters/net_filters"]
 	path = plugins/filters/net_filters
 	url = https://github.com/alexandrem/ansible-net-filters.git
-[submodule "library/openstack-ansible-modules"]
-	path = library/openstack-ansible-modules
-	url = git@gitlab-ncsa.ubisoft.org:iaas/openstack-ansible-modules.git
-	branch = virga
