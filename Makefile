@@ -91,6 +91,12 @@ status:
 fix-key:
 	chmod 400 deployments/vagrant_private_key
 
+box-update:
+	@echo -e "Using deployment at: \t" $(deploy); \
+	pushd $(deploy) 1> /dev/null; \
+	vagrant box update; \
+	popd 1> /dev/null
+
 provision:
 	$(bin)/ansible-playbook -i $(deploy)/hosts site.yml $(provision_args)
 
