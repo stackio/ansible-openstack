@@ -123,6 +123,10 @@ Vagrant.configure(2) do |config|
       machine.vm.provision "shell", inline: $inline_fix_vbguest
     end
 
+    # temporary fix for CentOS 7.1 NetworkManager conflict with vagrant private network
+    # https://github.com/mitchellh/vagrant/issues/5590
+    machine.vm.provision "shell", inline: "nmcli connection reload; systemctl restart network.service"
+
     if $vm_inline_shell
       machine.vm.provision "shell", inline: $vm_inline_shell
     end
