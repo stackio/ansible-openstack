@@ -1,13 +1,8 @@
 ---
-proxy_env:
-  http_proxy: http://proxy.mdc.ubisoft.org:3128/
-  https_proxy: https://proxy.mdc.ubisoft.org:3128/
-  no_proxy: 10.0.0.0/8,192.168.0.0/16,172.16.0.0/12,msr-virga-tool01.ubisoft.org
-
-set_yum_proxy: True
+set_yum_proxy: False
 use_ubisoft_repo: False
 
-openstack_release_serie: icehouse
-openstack_install_epel: False
+openstack_install_epel: True
 
-openstack_ntp_server: time-ncsa.ubisoft.org
+openstack_release_serie: icehouse
+openstack_release_version: 2014.1.4
