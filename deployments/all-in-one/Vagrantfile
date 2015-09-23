@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 require 'fileutils'
+require 'uri'
 
 Vagrant.require_version ">= 1.6.0"
 
@@ -50,13 +51,25 @@ Vagrant.configure(2) do |config|
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
     puts "Setting vagrant proxy config from ENV..."
+
     if ENV["http_proxy"]
-      puts "http_proxy: " + ENV["http_proxy"]
-      config.proxy.http     = ENV["http_proxy"]
+      http_uri = URI.parse(ENV["http_proxy"])
+      if http_uri.host == "localhost"
+        http_uri.host = "10.0.2.2"
+      end
+
+      puts "http_proxy: " + http_uri.to_s
+      config.proxy.http     = http_uri.to_s
     end
+
     if ENV["https_proxy"]
-      puts "https_proxy: " + ENV["https_proxy"]
-      config.proxy.https    = ENV["https_proxy"]
+      https_uri = URI.parse(ENV["https_proxy"])
+      if https_uri.host == "localhost"
+        https_uri.host = "10.0.2.2"
+      end
+
+      puts "https_proxy: " + https_uri.to_s
+      config.proxy.https    = https_uri.to_s
     end
     if ENV["no_proxy"]
       config.proxy.no_proxy = ENV["no_proxy"]
@@ -119,7 +132,7 @@ Vagrant.configure(2) do |config|
     end
 
     if Vagrant.has_plugin?("vagrant-vbguest")
-      puts "Ensure that latest vagrant-vbguest modules are used inside guest..."
+      puts "Ensuring that latest vagrant-vbguest modules are used inside guest..."
       machine.vm.provision "shell", inline: $inline_fix_vbguest
     end
 
