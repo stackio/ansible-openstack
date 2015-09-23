@@ -84,8 +84,8 @@
   scm: git
   path: roles/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-mariadb-role.git
-  name: os-mariadb
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-mysql-role.git
+  name: os-mysql
   version: master
   scm: git
   path: roles/
