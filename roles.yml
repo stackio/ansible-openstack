@@ -6,84 +6,86 @@
   scm: git
   path: roles/
 
-- src: https://github.com/alexandrem/mysql
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mariadb-role.git
+  name: mariadb
   version: master
+  scm: git
   path: roles/
 
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/commons.git
-  name: commons
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/base.git
-  name: base
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova.git
-  name: nova
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/nova-config.git
-  name: nova-config
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone.git
-  name: keystone
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/keystone-config.git
-  name: keystone-config
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/cinder.git
-  name: cinder
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/cinder-config.git
-  name: cinder-config
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance.git
-  name: glance
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/glance-config.git
-  name: glance-config
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/horizon.git
-  name: horizon
-  version: icehouse
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/mysql.git
-  name: mysql
-  version: master
-  scm: git
-  path: roles/openstack/
-
-- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/rabbitmq.git
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/rabbitmq-role.git
   name: rabbitmq
   version: master
   scm: git
-  path: roles/openstack/
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-commons-role.git
+  name: os-commons
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-base-role.git
+  name: os-base
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-nova-role.git
+  name: os-nova
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-nova-config-role.git
+  name: os-nova-config
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-keystone-role.git
+  name: os-keystone
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-keystone-config-role.git
+  name: os-keystone-config
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-cinder-role.git
+  name: os-cinder
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-cinder-config-role.git
+  name: os-cinder-config
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-glance-role.git
+  name: os-glance
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-glance-config-role.git
+  name: os-glance-config
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-horizon-role.git
+  name: os-horizon
+  version: icehouse
+  scm: git
+  path: roles/
+
+- src: git@gitlab-ncsa.ubisoft.org:ansible-openstack/os-mysql-role.git
+  name: os-mysql
+  version: master
+  scm: git
+  path: roles/

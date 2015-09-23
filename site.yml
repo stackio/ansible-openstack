@@ -9,30 +9,28 @@
 - hosts: mysql
   sudo: True
   roles:
-    - openstack/mysql
+    - os-mysql
   tags:
     - mysql
 
 - hosts: rabbitmq
   sudo: True
   roles:
-    - openstack/rabbitmq
+    - rabbitmq
   tags:
     - rabbitmq
 
 - hosts: keystone
   sudo: True
   roles:
-    - role: openstack/keystone
-      do: install
+    - os-keystone
   tags:
     - keystone
 
 - hosts: nova-api
   sudo: True
   roles:
-    - role: openstack/nova
-      do: install
+    - role: os-nova
       service: nova-api
   tags:
     - nova
@@ -41,8 +39,7 @@
 - hosts: nova-scheduler
   sudo: True
   roles:
-    - role: openstack/nova
-      do: install
+    - role: os-nova
       service: nova-network
   tags:
     - nova
@@ -51,8 +48,7 @@
 - hosts: cinder-api
   sudo: True
   roles:
-    - role: openstack/cinder
-      do: install
+    - role: os-cinder
       service: cinder-api
   tags:
     - cinder
@@ -61,8 +57,7 @@
 - hosts: cinder-scheduler
   sudo: True
   roles:
-    - role: openstack/cinder
-      do: install
+    - role: os-cinder
       service: cinder-scheduler
   tags:
     - cinder
@@ -71,8 +66,7 @@
 - hosts: cinder-volume
   sudo: True
   roles:
-    - role: openstack/cinder
-      do: install
+    - role: os-cinder
       service: cinder-volume
   tags:
     - cinder
@@ -81,8 +75,7 @@
 - hosts: glance-api
   sudo: True
   roles:
-    - role: openstack/glance
-      do: install
+    - role: os-glance
       service: glance-api
   tags:
     - glance
@@ -91,8 +84,7 @@
 - hosts: glance-registry
   sudo: True
   roles:
-    - role: openstack/glance
-      do: install
+    - role: os-glance
       service: glance-registry
   tags:
     - glance
@@ -101,18 +93,16 @@
 - hosts: dashboard
   sudo: True
   roles:
-    - openstack/horizon
+    - os-horizon
   tags:
     - horizon
 
 - hosts: compute
   sudo: True
   roles:
-    - role: openstack/nova
-      do: install
+    - role: os-nova
       service: nova-compute
-    - role: openstack/nova
-      do: install
+    - role: os-nova
       service: nova-network
   tags:
     - nova
