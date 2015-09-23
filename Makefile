@@ -13,7 +13,9 @@ dashboard_url = http://localhost:8888/dashboard
 venv = venv
 bin = $(venv)/bin
 development = 1
-roles_path = roles/openstack
+reqfile = roles.yml
+roles_path = roles
+os_roles_pattern = os-*
 roles_dev_path = $(ROOT_DIR)/../ansible-openstack-roles
 
 ifdef tags
@@ -31,7 +33,7 @@ all: requirements up fix-key provision show-gen-password show-dashboard-url
 development:
 	mkdir -p ../ansible-openstack-roles
 	@echo "development mode enabled."
-	@for d in `find $(roles_path) -type d -depth 1`; do \
+	@for d in `find $(roles_path) -type d -name $(os_roles_pattern) -depth 1`; do \
 	  name=`basename $$d`; \
 	  test -d $(roles_dev_path)/$$name || (mv $$d $(roles_dev_path)/$$name; \
 	    echo "moved $$name to $(roles_dev_path)/"); \
@@ -43,13 +45,13 @@ development:
 
 install-requirements-dev: virtualenv
 	@echo "installing role dependencies for dev..."
-	$(venv)/bin/python ansible-galaxy install -i -d -r roles.yml
+	$(venv)/bin/python ansible-galaxy install -i -d -r $(reqfile)
 	@echo "done."
 
 install-requirements: virtualenv
 	@echo "installing role dependencies..."
 	# until we fix our meta dependencies, we must keep the -d development flag
-	$(venv)/bin/python ansible-galaxy install -i -d -r roles.yml
+	$(venv)/bin/python ansible-galaxy install -i -d -r $(reqfile)
 	@echo "done."
 
 clean-requirements:
