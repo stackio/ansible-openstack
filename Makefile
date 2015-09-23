@@ -15,7 +15,7 @@ bin = $(venv)/bin
 development = 1
 reqfile = roles.yml
 roles_path = roles
-os_roles_pattern = os-*
+os_roles_pattern = *
 roles_dev_path = $(ROOT_DIR)/../ansible-openstack-roles
 
 ifdef tags
@@ -33,7 +33,7 @@ all: requirements up fix-key provision show-gen-password show-dashboard-url
 development:
 	mkdir -p ../ansible-openstack-roles
 	@echo "development mode enabled."
-	@for d in `find $(roles_path) -type d -name $(os_roles_pattern) -depth 1`; do \
+	@for d in `find $(roles_path) -type d -depth 1`; do \
 	  name=`basename $$d`; \
 	  test -d $(roles_dev_path)/$$name || (mv $$d $(roles_dev_path)/$$name; \
 	    echo "moved $$name to $(roles_dev_path)/"); \
