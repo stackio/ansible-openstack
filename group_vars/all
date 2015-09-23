@@ -1,7 +1,4 @@
 ---
-set_yum_proxy: False
-use_ubisoft_repo: False
-
 openstack_install_epel: True
 
 openstack_release_serie: icehouse
