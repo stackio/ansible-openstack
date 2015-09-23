@@ -130,3 +130,7 @@ compute_host
 [vagrant:children]
 openstack-services
 compute
+
+[ubi:children]
+openstack-services
+compute

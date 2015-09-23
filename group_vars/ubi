@@ -1,0 +1,5 @@
+---
+set_yum_proxy: True
+use_ubisoft_repo: True
+
+openstack_ntp_server: time-ncsa.ubisoft.org
