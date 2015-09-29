@@ -1,10 +1,6 @@
 ---
 # Most of this should be moved into Vagrantfile
 
-proxy_env:
-  http_proxy: http://10.0.2.2:3128/
-  https_proxy: https://10.0.2.2:3128/
-
 openstack_network_management: 172.16.0.0/24
 openstack_network_external: 172.16.100.0/24
 openstack_network_internal: 172.16.200.0/24
