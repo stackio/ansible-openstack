@@ -2,7 +2,7 @@
 - hosts: mysql
   sudo: True
   roles:
-    - os-mysql
+    - os-mariadb
   tags:
     - mysql
 
