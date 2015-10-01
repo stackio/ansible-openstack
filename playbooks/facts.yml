@@ -1,0 +1,5 @@
+---
+- name: collect facts from service hosts
+  hosts: all
+  gather_facts: True
+  tasks: []
